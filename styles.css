@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.calculation {
+    width: 31%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    line-height: 1.5;
+}
+
+.explanation,
+.steps {
+    width: 31%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    line-height: 2.4;
+}
+
+.explanation {
+    font-size: smaller;
+}
+
+label,
+input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+
+p {
+    background: #f1f1f1;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#explanation-content {
+    display: none;
+}
+
+#explanation-title {
+    cursor: pointer;
+}
+
+.slider {
+    width: 80%; /* You can adjust this width based on your layout */
+    display: inline-block; /* To allow the display value to be right next to it */
+}
+
+#V_tank_display, #Level_start_display, #P_start_display, #P_trailer_display, #m_offload_display{
+    margin-left: 10px; /* Spacing between the slider and its display value */
+    font-size: 16px;
+}

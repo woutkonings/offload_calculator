@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LNG Calculation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculation">
+            <h2>State of the tank before offload</h2>
+
+            <label for="V_tank">Volume of the tank:</label>
+            <input type="range" class="slider" id="V_tank" min="30" max="80" step="1" oninput="updateValue('V_tank'); calculate();">
+            <span id="V_tank_display"></span> m<sup>3</sup>
+
+            <label for="Level_start">Current tank liquid level:</label>
+            <input type="range" class="slider" id="Level_start" min="0.01" max="0.99" step="0.001"  oninput="updateValue('Level_start'); calculate();">
+            <span id="Level_start_display"></span>%
+
+            <label for="P_start">Original Pressure:</label>
+            <input type="range" class="slider" id="P_start" min="1" max="11" step="0.01" oninput="updateValue('P_start'); calculate();">
+            <span id="P_start_display"></span> bar
+
+            
+            <h2>State of the trailer before offload</h2>
+
+            <label for="P_trailer">Trailer pressure:</label>
+            <input type="range" class="slider" id="P_trailer" min="0.5" max="10" step="0.01"  oninput="updateValue('P_trailer'); calculate();">
+            <span id="P_trailer_display"></span> bar
+
+            <label for="m_offload">Amount of LNG offloaded from the trailer to the tank (kg):</label>
+            <input type="range" class="slider" id="m_offload" min="0" max="23000" step="100" oninput="updateValue('m_offload'); calculate();">
+            <span id="m_offload_display"></span> kg
+
+            <p><strong>Final tank pressure:</strong> <span id="display-P_final"></span></p>
+            <p><strong>Final Tank Properties:</strong></p>
+            <ul>
+                <li>Total Mass: <span id="display-totalMass"></span></li>
+                <li>Total Liquid Mass: <span id="display-liquidMass"></span></li>
+                <li>Total Gas Mass: <span id="display-gasMass"></span></li>
+                <li>Final temperature: <span id="display-temp"></span></li>
+                <li>Final liquid level: <span id="display-liquidlevel"></span></li>
+
+            </ul>
+
+
+        </div>
+        <div class="explanation">
+            <h4 id="explanation-title">Visualization</h4>
+            <div id="visualization"></div>
+        </div>
+        <div class="steps">
+            <h2>Calculation Steps</h2>
+            <p id="steps"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
