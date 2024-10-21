@@ -41,50 +41,63 @@ D3.js shows tank liquid and gas levels before and after offloading.
 
 ## Explanation of State Equations
 
-To calculate the new state of the tank after LNG offloading, the following thermodynamic relations and state equations are used:
+The state of the tank is calculated after offloading using thermodynamic equations, specifically focusing on mass and energy balance. 
 
 ### 1. Mass Balance Equation
 The total mass in the tank after offloading is the sum of the initial mass in the tank and the offloaded mass:
 
-\[
+$$
 m_{\text{total}}^{\text{final}} = m_{\text{total}}^{\text{start}} + m_{\text{offload}}
-\]
+$$
+
+Where:
+- \( m_{\text{total}}^{\text{final}} \) is the total mass in the tank after offloading.
+- \( m_{\text{total}}^{\text{start}} \) is the initial mass in the tank.
+- \( m_{\text{offload}} \) is the mass of LNG transferred from the trailer.
 
 ### 2. Energy Balance Equation
-The internal energy of the system is updated by adding the internal energy of the offloaded LNG to the initial energy of the tank:
+The internal energy of the system is updated by adding the energy associated with the offloaded LNG:
 
-\[
+$$
 U_{\text{total}}^{\text{final}} = U_{\text{total}}^{\text{start}} + (m_{\text{offload}} \cdot h_{\text{liquid}}^{\text{trailer}})
-\]
+$$
 
 Where:
-- \( h_{\text{liquid}}^{\text{trailer}} \) is the specific enthalpy of the liquid in the trailer.
-  
+- \( U_{\text{total}}^{\text{final}} \) is the total internal energy in the tank after offloading.
+- \( h_{\text{liquid}}^{\text{trailer}} \) is the specific enthalpy of the liquid from the trailer.
+
 ### 3. Specific Internal Energy and Volume
-The average specific internal energy and specific volume of the tank after offloading are calculated as:
+After offloading, the average specific internal energy and specific volume of the tank are calculated as follows:
 
-\[
+$$
 u_{\text{final}} = \frac{U_{\text{total}}^{\text{final}}}{m_{\text{total}}^{\text{final}}}
-\]
-\[
+$$
+
+$$
 v_{\text{final}} = \frac{V_{\text{tank}}}{m_{\text{total}}^{\text{final}}}
-\]
+$$
 
 Where:
-- \( V_{\text{tank}} \) is the volume of the tank.
-  
+- \( u_{\text{final}} \) is the specific internal energy after offloading.
+- \( v_{\text{final}} \) is the specific volume after offloading.
+
 ### 4. Pressure Estimation
-The final tank pressure \( P_{\text{final}} \) is determined by iterating through thermodynamic tables and interpolating the properties of methane at different pressures. The algorithm adjusts the pressure until the specific volume and specific internal energy match the interpolated values for a new equilibrium state.
+The final tank pressure \( P_{\text{final}} \) is determined by iterating through thermodynamic tables to find the pressure that corresponds to the calculated specific internal energy and volume:
+
+$$
+P_{\text{final}} = f(v_{\text{final}}, u_{\text{final}})
+$$
 
 ### 5. Liquid-Gas Quality
-The liquid-gas ratio (quality) \( x \) is determined using specific volumes:
+The liquid-gas ratio (quality) \( x \) is determined by the following equation using the specific volumes of the liquid and gas:
 
-\[
+$$
 x = \frac{v_{\text{final}} - v_{\text{liquid}}}{v_{\text{gas}} - v_{\text{liquid}}}
-\]
+$$
 
 Where:
-- \( v_{\text{liquid}} \) and \( v_{\text{gas}} \) are the specific volumes of liquid and gas phases, respectively.
+- \( v_{\text{liquid}} \) is the specific volume of the liquid phase.
+- \( v_{\text{gas}} \) is the specific volume of the gas phase.
 
 ---
 
